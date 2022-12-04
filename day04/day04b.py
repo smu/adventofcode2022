@@ -6,16 +6,17 @@
 # Filename:    day04.py
 #---------------------------------------
 
-# In how many assignment pairs does one range fully contain the other?
+# In how many assignment pairs do the ranges overlap?
 
 def get_range(string):
     return([int(i) for i in string.split('-')])
 
-def size(a):
-    return(a[1] - a[0])
-
-def a_in_b(a,b):
-    return(min(a) >= min(b) and max(a) <= max(b))
+def a_overlaps_b(a,b):
+    return(
+            max(a) >= min(b) and min(a) <= max(b) 
+            or
+            max(b) >= min(a) and min(b) <= max(a) 
+            )
 
 count = 0
 
@@ -25,8 +26,8 @@ with open('input') as f:
             a, b = line.split(',')
             r_a = get_range(a)
             r_b = get_range(b)
-            if a_in_b(r_a, r_b) or a_in_b(r_b, r_a):
-                print("%s in %s" % (a,b))
+            if a_overlaps_b(r_a, r_b):
+                print("%s overlaps with %s" % (a,b))
                 count += 1
 
 
