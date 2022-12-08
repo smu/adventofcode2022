@@ -74,4 +74,3 @@ for j in range(n_stacks):
     tmp += stacks[j].pop()
 print("results: %s" % tmp)
 
-# wrong1 : LVZPSTTCZ
